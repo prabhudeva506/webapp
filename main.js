@@ -15,10 +15,11 @@ jsondata("data.json",function(text) {
 let data= JSON.parse(text);
 console.log(data);
 ba(data.basics);
+educa(data.Education);
 })
 //main div class calling from html
 // var main=document.querySelector('main');
-var main=document.getElementById('main');
+var main=document.querySelector(".main");
 //left div creation
 var left=document.createElement("div");
 left.classList.add("left");
@@ -26,7 +27,6 @@ left.classList.add("left");
 left.setAttribute("id","left");
 //appending main div
 main.appendChild(left);
-console.log(left);
 function ba(basic){
   //creation of img
 var img=document.createElement("img");
@@ -39,10 +39,39 @@ left.appendChild(name);
 //creating email
 var mail=document.createElement("p");
 mail.textContent=basic.email;
-name.appendChild(mail);
+left.appendChild(mail);
 //mobile appending
 var mb=document.createElement("h4");
 mb.textContent=basic.mobile;
 mail.appendChild(mb);
 
+}
+//right div creation
+var right=document.createElement("div");
+right.classList.add("right");
+main.appendChild(right);
+//education div creation
+var edu=document.createElement("h1");
+edu.textContent="education details:";
+edu.appendChild(document.createElement("HR"));
+right.appendChild(edu);
+//function calling
+function educa(education) {
+  for (i in education) {
+  var e1=document.createElement("div");
+  e1.classList.add("edu1");
+  e1.textContent=education[i].course;
+  //list creation
+  var ul=document.createElement("ul");
+  ul.classList.add("edu2");
+  for(j in education[i].college){
+    var li=document.createElement("li");
+    li.textContent=education[i].college[j];
+    edu.appendChild(e1);
+    e1.appendChild(ul);
+    ul.appendChild(li);
+
+  }
+
+  }
 }
